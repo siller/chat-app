@@ -46,7 +46,9 @@ export default function LoginPage() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: process.env.NODE_ENV === 'production' 
+            ? `https://chat-o39f029z6-sillers-projects.vercel.app/auth/callback`
+            : `${window.location.origin}/auth/callback`,
         },
       });
 
@@ -68,7 +70,9 @@ export default function LoginPage() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'apple',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo: process.env.NODE_ENV === 'production' 
+            ? `https://chat-o39f029z6-sillers-projects.vercel.app/auth/callback`
+            : `${window.location.origin}/auth/callback`,
         },
       });
 
